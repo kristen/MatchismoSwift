@@ -10,16 +10,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var flipsLabel: UILabel!
+    lazy var flipCount = 0
+    lazy var deck = PlayingCardDeck()
+
+    @IBAction func touchCardButton(sender: UIButton) {
+        if sender.currentTitle == nil || sender.currentTitle?.isEmpty == true {
+            sender.setBackgroundImage(UIImage(named: "cardfront"), forState: .Normal)
+            
+            if let randomCard = deck.drawRandomCard() {
+                sender.setTitle(randomCard.contents, forState: .Normal)
+            }
+            
+            
+        } else {
+            sender.setBackgroundImage(UIImage(named: "cardback"), forState: .Normal)
+            sender.setTitle("", forState: .Normal)
+        }
+        flipCount++
+        flipsLabel.text = "Flips: \(flipCount)"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
