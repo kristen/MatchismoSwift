@@ -9,26 +9,37 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var flipsLabel: UILabel!
-    lazy var flipCount = 0
-    lazy var deck = PlayingCardDeck()
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet var cardButtons: [UIButton]!
+    
+    lazy var game: CardMatchingGame = {
+        [unowned self] in
+        return CardMatchingGame(cardCount: self.cardButtons.count, usingDeck: PlayingCardDeck())
+    }()
 
     @IBAction func touchCardButton(sender: UIButton) {
-        if sender.currentTitle == nil || sender.currentTitle?.isEmpty == true {
-            sender.setBackgroundImage(UIImage(named: "cardfront"), forState: .Normal)
-            
-            if let randomCard = deck.drawRandomCard() {
-                sender.setTitle(randomCard.contents, forState: .Normal)
+        let index = (cardButtons as NSArray).indexOfObject(sender)
+        game.chooseCardAtIndex(index)
+        updateUI()
+    }
+    
+    func updateUI() {
+        for cardButton in cardButtons {
+            let index = (cardButtons as NSArray).indexOfObject(cardButton)
+            if let card = game.cardAtIndex(index) {
+                cardButton.setTitle(titleForCard(card), forState: .Normal)
+                cardButton.setBackgroundImage(backgroundImageForCard(card), forState: .Normal)
+                cardButton.enabled = !card.matched
             }
-            
-            
-        } else {
-            sender.setBackgroundImage(UIImage(named: "cardback"), forState: .Normal)
-            sender.setTitle("", forState: .Normal)
+            scoreLabel.text = "Score: \(game.score)"
         }
-        flipCount++
-        flipsLabel.text = "Flips: \(flipCount)"
+    }
+    
+    func titleForCard(card: Card) -> String {
+        return card.chosen ? card.contents : ""
+    }
+    
+    func backgroundImageForCard(card: Card) -> UIImage {
+        return UIImage(named: card.chosen ? "cardfront": "cardback")!
     }
 }
-

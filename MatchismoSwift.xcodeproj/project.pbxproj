@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BA5FDED1A700C56001626E1 /* CardMatchingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5FDEC1A700C56001626E1 /* CardMatchingGame.swift */; };
 		7BEE7D801A6F656A004CDD12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE7D7F1A6F656A004CDD12 /* AppDelegate.swift */; };
 		7BEE7D821A6F656A004CDD12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE7D811A6F656A004CDD12 /* ViewController.swift */; };
 		7BEE7D851A6F656A004CDD12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BEE7D831A6F656A004CDD12 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7BA5FDEC1A700C56001626E1 /* CardMatchingGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardMatchingGame.swift; sourceTree = "<group>"; };
 		7BEE7D7A1A6F656A004CDD12 /* MatchismoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchismoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BEE7D7E1A6F656A004CDD12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BEE7D7F1A6F656A004CDD12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				7BEE7D7F1A6F656A004CDD12 /* AppDelegate.swift */,
 				7BEE7D811A6F656A004CDD12 /* ViewController.swift */,
 				7BEE7D831A6F656A004CDD12 /* Main.storyboard */,
+				7BA5FDEC1A700C56001626E1 /* CardMatchingGame.swift */,
 				7BEE7D861A6F656A004CDD12 /* Images.xcassets */,
 				7BEE7D881A6F656A004CDD12 /* LaunchScreen.xib */,
 				7BEE7D7D1A6F656A004CDD12 /* Supporting Files */,
@@ -227,6 +230,7 @@
 				7BEE7DA41A6F731C004CDD12 /* PlayingCard.swift in Sources */,
 				7BEE7DA21A6F6D79004CDD12 /* Deck.swift in Sources */,
 				7BEE7D821A6F656A004CDD12 /* ViewController.swift in Sources */,
+				7BA5FDED1A700C56001626E1 /* CardMatchingGame.swift in Sources */,
 				7BEE7DA61A6F77AC004CDD12 /* PlayingCardDeck.swift in Sources */,
 				7BEE7DA01A6F65DA004CDD12 /* Card.swift in Sources */,
 				7BEE7D801A6F656A004CDD12 /* AppDelegate.swift in Sources */,
@@ -421,6 +425,7 @@
 				7BEE7D9B1A6F656A004CDD12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7BEE7D9C1A6F656A004CDD12 /* Build configuration list for PBXNativeTarget "MatchismoSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				7BEE7D9E1A6F656A004CDD12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

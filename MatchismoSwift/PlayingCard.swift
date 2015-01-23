@@ -35,4 +35,17 @@ class PlayingCard: Card {
     class func validSuits() -> [String] {
         return ["♥︎", "♦︎", "♠︎", "♣︎"]
     }
+    
+    override func match(otherCards: [Card]) -> Int {
+        var score = 0
+        if otherCards.count == 1 {
+            let otherCard = otherCards.first as PlayingCard
+            if otherCard.rank == rank {
+                score = 4
+            } else if otherCard.suit == suit {
+                score = 1
+            }
+        }
+        return score
+    }
 }
