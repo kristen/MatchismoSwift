@@ -23,6 +23,11 @@ class ViewController: UIViewController {
         updateUI()
     }
     
+    @IBAction func touchDealNewGameButton() {
+        game = CardMatchingGame(cardCount: self.cardButtons.count, usingDeck: PlayingCardDeck())
+        updateUI()
+    }
+    
     func updateUI() {
         for cardButton in cardButtons {
             let index = (cardButtons as NSArray).indexOfObject(cardButton)
