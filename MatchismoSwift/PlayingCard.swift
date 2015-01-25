@@ -38,14 +38,15 @@ class PlayingCard: Card {
     
     override func match(otherCards: [Card]) -> Int {
         var score = 0
-        if otherCards.count == 1 {
-            let otherCard = otherCards.first as PlayingCard
+        
+        for otherCard in otherCards as [PlayingCard] {
             if otherCard.rank == rank {
-                score = 4
+                score += 4
             } else if otherCard.suit == suit {
-                score = 1
+                score += 1
             }
         }
+        
         return score
     }
 }

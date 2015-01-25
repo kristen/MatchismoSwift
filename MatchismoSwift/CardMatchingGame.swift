@@ -35,23 +35,18 @@ class CardMatchingGame {
                 if card.chosen {
                     card.chosen = false
                 } else {
-                    for otherCard in cards {
-                        if otherCard.chosen && !otherCard.matched {
-                            let matchScore = card.match([otherCard])
-                            if matchScore > 0 {
-                                score += matchScore * matchBonus
-                                card.matched = true
-                                otherCard.matched = true
-                            } else {
-                                score -= mismatchPenalty
-                                otherCard.chosen = false
-                            }
-                            break
-                        }
+                    let otherChosenCards = cards.filter { $0.chosen && !$0.matched }
+                    let matchScore = card.match(otherChosenCards)
+                    if matchScore > 0 {
+                        score += matchScore * matchBonus
+                        card.matched = true
+                        otherChosenCards.map { $0.matched = true }
+                    } else {
+                        score -= mismatchPenalty
+                        otherChosenCards.map { $0.chosen = false }
                     }
-                    
                     score -= costToChoose
-                    card.chosen = true
+                    card.chosen = true // wait to set chosen until after filter other chosen cards
                 }
             }
         }
