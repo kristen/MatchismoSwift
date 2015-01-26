@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet weak var numberOfCardsToMatchControl: UISegmentedControl!
     
     lazy var game: CardMatchingGame = {
         [unowned self] in
@@ -18,12 +19,17 @@ class ViewController: UIViewController {
     }()
 
     @IBAction func touchCardButton(sender: UIButton) {
+        numberOfCardsToMatchControl.setEnabled(false, forSegmentAtIndex: 0)
+        numberOfCardsToMatchControl.setEnabled(false, forSegmentAtIndex: 1)
         let index = (cardButtons as NSArray).indexOfObject(sender)
         game.chooseCardAtIndex(index)
         updateUI()
     }
     
     @IBAction func touchDealNewGameButton() {
+        numberOfCardsToMatchControl.setEnabled(true, forSegmentAtIndex: 0)
+        numberOfCardsToMatchControl.setEnabled(true, forSegmentAtIndex: 1)
+        numberOfCardsToMatchControl.selectedSegmentIndex = 0
         game = CardMatchingGame(cardCount: self.cardButtons.count, usingDeck: PlayingCardDeck())
         updateUI()
     }
@@ -46,5 +52,9 @@ class ViewController: UIViewController {
     
     func backgroundImageForCard(card: Card) -> UIImage {
         return UIImage(named: card.chosen ? "cardfront": "cardback")!
+    }
+    
+    @IBAction func touchMatchingModeControl(sender: UISegmentedControl) {
+        game.cardsToMatch = sender.selectedSegmentIndex + 2
     }
 }

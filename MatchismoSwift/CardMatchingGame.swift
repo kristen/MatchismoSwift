@@ -11,6 +11,7 @@ import Foundation
 class CardMatchingGame {
     lazy var score = 0
     lazy var cards: [Card] = []
+    var cardsToMatch = 2
     let mismatchPenalty = 2
     let matchBonus = 4
     let costToChoose = 1
@@ -36,14 +37,16 @@ class CardMatchingGame {
                     card.chosen = false
                 } else {
                     let otherChosenCards = cards.filter { $0.chosen && !$0.matched }
-                    let matchScore = card.match(otherChosenCards)
-                    if matchScore > 0 {
-                        score += matchScore * matchBonus
-                        card.matched = true
-                        otherChosenCards.map { $0.matched = true }
-                    } else {
-                        score -= mismatchPenalty
-                        otherChosenCards.map { $0.chosen = false }
+                    if otherChosenCards.count == cardsToMatch - 1 {
+                        let matchScore = card.match(otherChosenCards)
+                        if matchScore > 0 {
+                            score += matchScore * matchBonus
+                            card.matched = true
+                            otherChosenCards.map { $0.matched = true }
+                        } else {
+                            score -= mismatchPenalty
+                            otherChosenCards.map { $0.chosen = false }
+                        }
                     }
                     score -= costToChoose
                     card.chosen = true // wait to set chosen until after filter other chosen cards
