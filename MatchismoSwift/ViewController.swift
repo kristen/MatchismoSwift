@@ -19,16 +19,14 @@ class ViewController: UIViewController {
     }()
 
     @IBAction func touchCardButton(sender: UIButton) {
-        numberOfCardsToMatchControl.setEnabled(false, forSegmentAtIndex: 0)
-        numberOfCardsToMatchControl.setEnabled(false, forSegmentAtIndex: 1)
+        numberOfCardsToMatchControl.userInteractionEnabled = false
         let index = (cardButtons as NSArray).indexOfObject(sender)
         game.chooseCardAtIndex(index)
         updateUI()
     }
     
     @IBAction func touchDealNewGameButton() {
-        numberOfCardsToMatchControl.setEnabled(true, forSegmentAtIndex: 0)
-        numberOfCardsToMatchControl.setEnabled(true, forSegmentAtIndex: 1)
+        numberOfCardsToMatchControl.userInteractionEnabled = true
         numberOfCardsToMatchControl.selectedSegmentIndex = 0
         game = CardMatchingGame(cardCount: self.cardButtons.count, usingDeck: PlayingCardDeck())
         updateUI()
